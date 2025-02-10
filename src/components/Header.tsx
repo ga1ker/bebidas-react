@@ -1,15 +1,33 @@
-import { useMemo } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAppStore } from "../stores/useAppStore";
 
 export default function Header() {
     const { pathname } = useLocation();
     const isHome = useMemo(() => pathname === "/", [pathname]);
-    console.log(isHome);
-    
+    const [searchFilters, setSearchFilters] = useState({
+        ingredient: '',
+        category: ''
+    });
+
+    const categories = useAppStore((state) => state.categories);
+    const fetchCategories = useAppStore((state) => state.fetchCategories);
+    console.log(categories);
     
 
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+    
+
+    function handleChange(e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) {
+      setSearchFilters({
+        ...searchFilters, [e.target.name]: e.target.value
+      })
+    }
+
     return (
-      <header className={isHome ? 'bg-header bg-cover bg-center' : 'bg-slate-800'}>
+      <header className={isHome ? 'bg-header bg-cover bg-center' : 'bg-slate-950'}>
           <div className="mx-auto container px-5 py-16">
               <div className="flex justify-between items-center">
                   <div>
@@ -37,6 +55,7 @@ export default function Header() {
                       <input 
                         id='ingredient'
                         type="text" 
+                        onChange={handleChange}
                         name="ingredient"
                         className="p-3 w-full rounded-lg focus:outline-none"
                         placeholder="Nombre o Ingrediente. Ej. Vodka, Tequila Café"
@@ -50,6 +69,7 @@ export default function Header() {
                       </label>
                       <select 
                         id='category'
+                        onChange={handleChange}
                         name="category"
                         className="p-3 w-full rounded-lg focus:outline-none"
                         >
