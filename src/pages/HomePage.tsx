@@ -1,25 +1,37 @@
-import { useMemo } from "react";
-import { useAppStore } from "../stores/useAppStore";
+import { useMemo } from "react"
+import { useAppStore } from "../stores/useAppStore"
+import DrinkCard from "../components/DrinkCard";
 
-export default function HomePage() {
-  const recipes = useAppStore((state) => state.recipes);
-  const hasRecipes = useMemo(() => recipes.drinks.length > 0, [recipes]);
+export default function HomePage(){
 
-  return (
-    <>
-      <h1>Recetas</h1>
+    const recipes = useAppStore(state => state.recipes)
+    const hasRecipes = useMemo(() => recipes.drinks.length > 0, [recipes]);
 
-      {hasRecipes ? (
+    return(
         <>
-          <p>Sí hay recetas</p>
+        <h1 className="text-6xl font-extrabold text-orange-400">Recetas</h1>
 
-          {recipes.drinks.map((drink) => (
-            <p key={drink.idDrink}>{drink.strDrink}</p>
-          ))}
+        {
+            hasRecipes? (
+                <>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10 sm:grid-cols-1">
+                    {
+                        recipes.drinks.map(drink => (
+                            <DrinkCard
+                                drink={drink}
+                                key={drink.idDrink}
+                            />
+                        ))
+                    }
+                </div>
+
+                </>
+            ) : ( 
+                <p>No hay recetas hermano</p>
+            )
+        }
+
         </>
-      ) : (
-        <p>No hay recetas hermano</p>
-      )}
-    </>
-  );
+    )
 }
