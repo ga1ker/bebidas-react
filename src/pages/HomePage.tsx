@@ -9,7 +9,7 @@ export default function HomePage(){
 
     return(
         <>
-        <h1 className="text-6xl font-extrabold text-orange-400">Recetas</h1>
+        <h1 className="text-6xl font-extrabold text-green-400">Recetas</h1>
 
         {
             hasRecipes? (

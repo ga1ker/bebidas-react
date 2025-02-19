@@ -11,7 +11,7 @@ export default function FavoritePage(){
 
     return(
         <>
-                <h1 className="text-6xl font-extrabold text-orange-400">Favoritos</h1>
+                <h1 className="text-6xl font-extrabold text-green-400">Favoritos</h1>
         
                 {
                     hasFavorites? (

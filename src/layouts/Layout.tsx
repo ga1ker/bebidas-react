@@ -15,7 +15,7 @@ export default function Layout() {
     <>
         <Header />
         <div className="container mx-auto py-16">
-          <Outlet />
+        <Outlet />
         </div>
         <Modal />
         <Notification />
