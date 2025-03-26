@@ -32,7 +32,6 @@ export default function Header() {
         e.preventDefault();
 
         if (Object.values(searchFilters).includes('')) {
-          // TODO notificaciones
             console.log('No dejar campos en blanco');
             camposVacios({
               text: 'No dejar campos vacíos',
@@ -47,7 +46,7 @@ export default function Header() {
     return (
       <header className={isHome ? 'bg-header bg-cover bg-center' : 'bg-green-800'}>
           <div className="mx-auto container px-5 py-16">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center ">
                   <div>
                       <img className="w-32 hue-rotate-90" src="/logo.svg" alt="logotipo" />
                   </div>

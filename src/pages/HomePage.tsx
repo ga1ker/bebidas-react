@@ -15,7 +15,7 @@ export default function HomePage(){
             hasRecipes? (
                 <>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10 sm:grid-cols-1">
+                <div className="grid grid-cols-4 md:grid-cols-2 2xl:grid-cols-4 my-10 gap-10 sm:grid-cols-1">
                     {
                         recipes.drinks.map(drink => (
                             <DrinkCard
